@@ -33,7 +33,7 @@ export class AlbumsComponent implements OnInit, AfterViewInit {
     // })
 
     // Promise
-    this.albumService.getAlbumsFromAPI().then((data) => {
+    this.albumService.getAlbums().then((data) => {
       this.albums = data;
       this.filteredAlbums = this.albums.slice();
       this.dataLoaded = true;
