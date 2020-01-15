@@ -1,5 +1,8 @@
 <h2>Fotos</h2>
 <a routerLink=".."> &lt; Regresar</a>
+<button (click)="goNext()">Siguiente</button>
+<!-- <a routerLink="../{{getNextId()}}">Siguiente</a> -->
+
 <div class="photos-grid">
     <div *ngFor="let photo of photos">
         <img [src]="photo.thumbnailUrl" [alt]="photo.title">

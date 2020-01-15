@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { PhotoService } from './photo.service';
 
@@ -15,22 +15,51 @@ export class PhotosComponent implements OnInit {
 
   dataLoaded:boolean = false;
 
-  constructor(private photoService:PhotoService, private activatedRoute:ActivatedRoute) {
-    this.activatedRoute.params.subscribe(data => {
-      this.getPhotos(data.albumId);
-    });
-  }
+  private albumId:number;
 
-  ngOnInit() {
+  constructor(
+    private photoService:PhotoService,
+    private activatedRoute:ActivatedRoute,
+    private router:Router
+  ) {
     
   }
 
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      this.albumId = parseInt(params.albumId, 10);
+      this.getPhotosObservable();
+    });
+  }
+
   getPhotos(albumId) {
-    this.photoService.getPhotos(albumId).then(response => {
-      console.log('Fotos: ', response);
+    this.photoService.getPhotos(albumId)
+      .then(response => {
+        this.photos = response;
+        this.dataLoaded = true;
+      })
+      .catch(err => {
+        console.log('Error', err);
+      });
+  }
+
+  getPhotosObservable() {
+    this.photoService.getPhotosObservable(this.albumId).subscribe(response => {
       this.photos = response;
       this.dataLoaded = true;
+    }, err => {
+      console.log('Error', err);
     });
+  }
+
+  goNext() {
+    this.router.navigate(['../'+this.getNextId()], {
+      relativeTo: this.activatedRoute
+    })
+  }
+
+  getNextId() {
+    return this.albumId + 1;
   }
 
 }

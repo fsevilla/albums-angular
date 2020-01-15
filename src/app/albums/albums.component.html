@@ -1,9 +1,6 @@
 <h2>{{ title }} </h2>
 
-<input type="text" [(ngModel)]="albumTitle" placeholder="Buscar con click">
-<button (click)="search()">Buscar</button>
-<br>
-<input type="text" (keyup)="search2($event)" placeholder="Buscar on the fly">
+<input type="text" (keyup)="search2($event)" placeholder="Buscar...">
 
 <p *ngIf="!dataLoaded">Cargando...</p>
 <ul>
