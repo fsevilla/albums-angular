@@ -36,6 +36,7 @@ export class AlbumsComponent implements OnInit, AfterViewInit {
     this.albumService.getAlbumsFromAPI().then((data) => {
       this.albums = data;
       this.filteredAlbums = this.albums.slice();
+      this.dataLoaded = true;
     }).catch(err => {
       console.error('Hubo un error...', err);
     });

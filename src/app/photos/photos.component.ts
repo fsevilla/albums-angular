@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { PhotoService } from './photo.service';
+
 
 @Component({
   selector: 'app-photos',
@@ -8,10 +11,18 @@ import { PhotoService } from './photo.service';
 })
 export class PhotosComponent implements OnInit {
 
-  constructor(private photoService:PhotoService) { }
+  constructor(private photoService:PhotoService, private activatedRoute:ActivatedRoute) {
+    this.activatedRoute.params.subscribe(data => {
+      this.getPhotos(data.albumId);
+    });
+  }
 
   ngOnInit() {
-    this.photoService.getPhotos(2).then(response => {
+    
+  }
+
+  getPhotos(albumId) {
+    this.photoService.getPhotos(albumId).then(response => {
       console.log('Fotos: ', response);
     });
   }
