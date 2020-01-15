@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { PhotosComponent } from './photos/photos.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumsComponent,
-    PhotosComponent
+    PhotosComponent,
+    NotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

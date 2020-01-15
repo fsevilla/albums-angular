@@ -1,0 +1,28 @@
+
+
+.photos-grid {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    & > div {
+        width: 50%;
+        float: left;
+
+        @media (min-width: 768px) {
+            width: 25%;
+        }
+
+        @media (min-width: 1024px) {
+            width: 20%;
+        }
+
+        img {
+            display: block;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+    }
+}
+

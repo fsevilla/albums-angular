@@ -11,6 +11,10 @@ import { PhotoService } from './photo.service';
 })
 export class PhotosComponent implements OnInit {
 
+  photos:any[] = [];
+
+  dataLoaded:boolean = false;
+
   constructor(private photoService:PhotoService, private activatedRoute:ActivatedRoute) {
     this.activatedRoute.params.subscribe(data => {
       this.getPhotos(data.albumId);
@@ -24,6 +28,8 @@ export class PhotosComponent implements OnInit {
   getPhotos(albumId) {
     this.photoService.getPhotos(albumId).then(response => {
       console.log('Fotos: ', response);
+      this.photos = response;
+      this.dataLoaded = true;
     });
   }
 
